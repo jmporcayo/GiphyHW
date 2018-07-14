@@ -1,0 +1,77 @@
+<!-- 2zFjv0Z9UR3muwf0OoBNU6FuKOniCVk6s -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Button Fun</title>
+</head>
+
+<body>
+        <button data-brands="nike">swoosh</button>
+        <button data-brands="adidas">3 stripes</button>
+        <button data-brands="puma">cat</button>
+        <div id="gifs-appear-here">
+        </div>
+    <!-- create a button for random data button -->
+        
+
+        
+            
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+          // Constructing a queryURL using the animal name
+          var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        brands + "2zFjv0Z9UR3muwf0OoBNU6FuKOniCVk6s";
+
+
+// string of arrays that interest me
+let topics = ["nike", "adidas", "pumas", "underarmour"];
+// event listener for random-button
+$("#random-button").on("click", function() {
+
+// Grabbing and storing the data-animal property value from the button
+let topics = $(this).attr("data-brands");
+
+
+
+    
+// Perfoming an AJAX GET request to our queryURL
+$.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+
+      // After the data from the AJAX request comes back
+      .then(function(response) {
+        console.log(queryURL);
+
+          // Saving the image_original_url property
+          var imageUrl = response.data.image_original_url;
+
+          
+          // Creating and storing a div tag
+          var animalDiv = $("<div>");
+
+          // Creating a paragraph tag with the result item's rating
+          var p = $("<p>").text("Rating: " + results[i].rating);
+
+          // Creating and storing an image tag
+          var randomImage = $("<img>");
+
+          // Setting the randomImage src attribute to imageUrl
+          randomImage.attr("src", imageUrl);
+          randomImage.attr("alt", "random image");
+
+          // Prepending the randomImage to the images div
+          $("#images").prepend(randomImage);
+        });
+    });
+
+  </script>
+</body>
+</html>
